@@ -1,0 +1,31 @@
+Competition           Date        UTC     Event                                
+-------------------------------------------------------------------------------
+Internationals        Tue 17 Nov  10:00   Brazil at Singapore                  
+Tennis (ATP)          Tue 17 Nov  10:40   Nitto ATP Finals (17 Nov-22 Nov)     
+Tennis (ATP)          Tue 17 Nov  19:40   Ben Shelton vs Alexander Zverev      
+
+Tennis (ATP)          Wed 18 Nov  13:00   Daniil Medvedev vs Carlos Alcaraz    
+Copa del Rey          Wed 18 Nov  19:30   Barakaldo at Reus FC Reddis          
+Brasileirão Série A   Wed 18 Nov  23:30   Cruzeiro vs Palmeiras                
+Brasileirão Série A   Wed 18 Nov  23:30   Flamengo vs Paranaense               
+
+Tennis (ATP)          Thu 19 Nov  05:00   Arthur Fils vs Alexander Zverev      
+Tennis (ATP)          Thu 19 Nov  05:00   Flavio Cobolli vs Carlos Alcaraz     
+
+Formula 1             Fri 20 Nov  00:30   Heineken Las Vegas Grand Prix - FP1  
+Formula 1             Fri 20 Nov  04:00   Heineken Las Vegas Grand Prix - FP2  
+Bundesliga            Fri 20 Nov  19:30   Bayern vs 1. FC Köln                 
+
+Formula 1             Sat 21 Nov  00:30   Heineken Las Vegas Grand Prix - FP3  
+Formula 1             Sat 21 Nov  04:00   Heineken Las Vegas Grand Prix - Qual 
+Premier League        Sat 21 Nov  12:30   Man City vs Fulham                   
+Premier League        Sat 21 Nov  15:00   Chelsea vs Leeds United              
+Ligue 1               Sat 21 Nov  16:15   Nice vs PSG                          
+Premier League        Sat 21 Nov  17:30   Newcastle vs Arsenal                 
+Brasileirão Série A   Sat 21 Nov  19:30   Palmeiras vs Flamengo                
+Ligue 1               Sat 21 Nov  19:45   Monaco vs Auxerre                    
+La Liga               Sat 21 Nov  20:00   Real Madrid vs Celta                 
+Copa Sudamericana     Sat 21 Nov  22:30   Boca Juniors at Atlético-MG          
+
+Formula 1             Sun 22 Nov  04:00   Heineken Las Vegas Grand Prix - Race 
+Premier League        Sun 22 Nov  16:30   Liverpool vs Man United              
