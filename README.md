@@ -88,15 +88,15 @@ Filters match after normalization (case, whitespace, `-`/`_` → space), so `"Re
 
 ```text
 sports-fixtures/
-├── .gitignore
-├── LICENSE
-├── pyproject.toml
-├── README.md
 ├── .github
     └── workflow
       └── sports_fixtures.yml
-└── src/
+├── src/
     └── sports_fixtures.py
+├── .gitignore
+├── LICENSE
+├── pyproject.toml
+└── README.md
 ```
 
 
