@@ -19,7 +19,6 @@ dependencies = [
 Homepage = "https://github.com/tiagormacedo/sports-fixtures"
 
 [project.scripts]
-`sports_fixtures`
 sports-fixtures = "sports_fixtures:main"
 
 [tool.setuptools]
