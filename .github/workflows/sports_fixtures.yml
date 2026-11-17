@@ -6,7 +6,7 @@ on:
   workflow_dispatch:         # manual "Run workflow" button, for testing now
 
 permissions:
-  contents: read, write
+  contents: write
 
 jobs:
   report:
