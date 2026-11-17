@@ -96,7 +96,8 @@ sports-fixtures/
 ├── .gitignore
 ├── LICENSE
 ├── pyproject.toml
-└── README.md
+├── README.md
+└── this_weeks_fixtures.txt
 ```
 
 
