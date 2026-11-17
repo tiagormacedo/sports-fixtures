@@ -66,7 +66,7 @@ sports_fixtures --days 10
 python -m sports_fixtures --days 3
 ```
 
-All times are displayed in **UTC**. Warnings (`[warn] ...`) are written to stderr. If a source fails you still receive a table with whatever succeeded.
+All times are displayed in UTC. Warnings (`[warn] ...`) are written to stderr. If a source fails you still receive a table with whatever succeeded.
 
 
 ## Configuration
@@ -102,7 +102,7 @@ sports-fixtures/
 
 ## Limitations & notes
 
-- **10-day horizon**: football-data.org's API caps query windows at 10 days; the CLI adopts the same cap globally.
+- 10-day horizon: football-data.org's API caps query windows at 10 days; the CLI adopts the same cap globally.
 - A full run issues ~50–70 HTTP GETs (one per day per ESPN slug); be gentle.
 - UTC-only output.
 - No caching.
