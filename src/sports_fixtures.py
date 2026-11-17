@@ -46,9 +46,24 @@ ESPN_ATHLETE_KEYS = ("name", "displayName", "shortName")
 
 # List of tuples containing information on which events to fetch. (source, code, label, team filter): `source` keys into `FETCH`, `code` is the league code for that API (or `None` for "everything in your FD plan"), `label` becomes the competition column, and `team filter` is an optional set that restricts events to named teams.
 TASKS = [
-    ("fd", "CL", "UEFA Champions League", {"PSG", "RMA"}),
-    ("espn", "uefa.nations", "UEFA Nations League", None),
+    ("fd", "BSA", "Brasileirão Série A", {"FLA", "PAL"}),
+    ("fd", "BL1", "Bundesliga", {"FCB"}),
+    ("fd", "PD", "La Liga", {"BAR", "RMA"}),
+    ("fd", "FL1", "Ligue 1", {"ASM", "PSG"}),
+    ("fd", "PL", "Premier League", {"ARS", "CHE", "LIV", "MCI", "MUN"}),
+    ("fd", "CL", "UEFA Champions League", {"ARS", "ASM", "BAR", "CHE", "MCI", "MUN", "PSG", "RMA"}),
+    ("fd", "CLI", "Copa Libertadores", None),
+    ("espn", "bra.copa_do_brazil", "Copa do Brasil", None),
+    ("espn", "ger.dfb_pokal", "DFB Pokal", {"FCB"}),
+    ("espn", "esp.copa_del_rey", "Copa del Rey", {"BAR", "RMA"}),
+    ("espn", "fra.coupe_de_france", "Coupe de France", {"ASM", "PSG"}),
+    ("espn", "eng.fa.cup", "FA Cup", {"ARS", "CHE", "LIV", "MCI", "MUN"}),
+    ("espn", "eng.league_cup", "Carabao Cup", {"ARS", "CHE", "LIV", "MCI", "MUN"}),
+    ("espn", "conmebol.sudamericana", "Copa Sudamericana", None),
+    ("espn", "uefa.nations", "UEFA Nations League", {"England", "France", "Germany", "Spain"}),
+    ("espn", "fifa.friendly", "Internationals", {"Brazil"}),
     ("f1", None, "Formula 1", None),
+    ("tennis", "atp", "Tennis (ATP)", None),
     ("tennis", "atp", "Tennis (ATP)", {"Carlos Alcaraz", "Jannik Sinner", "Alexander Zverev"}),
 ]
 
