@@ -29,7 +29,7 @@ jobs:
       - name: Generate report
         env:
           FD_API_KEY: ${{ secrets.FD_API_KEY }}
-        run: python sports_fixtures.py --days 7 | tee this_weeks_fixtures.txt
+        run: python -m sports_fixtures | tee this_weeks_fixtures.txt
 
       - name: Publish to run summary
         if: always()
