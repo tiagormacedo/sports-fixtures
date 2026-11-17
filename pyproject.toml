@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sports-fixtures"
+version = "1.0.0"
+description = "CLI table of upcoming sports fixtures using football-data.org's and ESPN's APIs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Tiago Macedo" }]
+dependencies = [
+  "requests>=2.31",
+  "urllib3>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/tiagormacedo/sports-fixtures"
+
+[project.scripts]
+`sports_fixtures`
+sports-fixtures = "sports_fixtures:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = ["sports_fixtures"]
