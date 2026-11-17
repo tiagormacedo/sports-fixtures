@@ -18,7 +18,7 @@ The data comes from [football-data.org](https://www.football-data.org) API and [
 ## Features
 
 - One command, multiple sports.
-- Declarative configuration: just edit one `TASKS` list of `(source, code, label, team filter)` tuples.
+- Declarative configuration: just edit the `TASKS` list of `(source, code, label, team filter)` tuples.
 - Teams and players filters.
 - Automatic retries with backoff, per-day/per-task error isolation, and warnings instead of crashes.
 - Deduplication, day-grouped output, width-capped columns, UTC times throughout.
@@ -103,9 +103,9 @@ sports-fixtures/
 ## Limitations & notes
 
 - **10-day horizon**: football-data.org's API caps query windows at 10 days; the CLI adopts the same cap globally.
-- **ESPN API is unofficial**: slugs and field names can change without notice.
 - A full run issues ~50–70 HTTP GETs (one per day per ESPN slug); be gentle.
-- Only v4 football statuses, UTC-only output, and no caching.
+- UTC-only output.
+- No caching.
 
 
 ## License
