@@ -1,7 +1,0 @@
-Competition               Date         UTC    Event
--------------------------------------------------------
-UEFA Champions League     Tue 19 Nov   20:00  Sporting CP vs Arsenal
-Brasileirão Série A       Wed 20 Nov   22:30  Flamengo vs Palmeiras
-Premier League            Sat 22 Nov   15:30  Arsenal vs Chelsea
-Formula 1                 Sat 22 Nov   17:00  Las Vegas Grand Prix - Qualifying
-Tennis (ATP)              Sun 23 Nov   14:00  Jannik Sinner vs Alexander Zverev
