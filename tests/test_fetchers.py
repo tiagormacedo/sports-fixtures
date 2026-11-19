@@ -153,18 +153,24 @@ def test_espn_soccer_requests_one_bucket_per_padded_day(monkeypatch, frozen):
     assert dates == ["20250109", "20250110", "20250111", "20250112", "20250113"]
 
 def test_espn_soccer_maps_and_postfilters_to_window(monkeypatch, frozen):
-    evs = [espn_event("Before", date="2025-01-09T21:00:00Z"),
-           espn_event("Inside", date="2025-01-11T21:00:00Z", state="post"),
-           espn_event("After", date="2025-01-14T21:00:00Z"),
-           espn_event("Bad", date="not a date")]
-    monkeypatch.setattr(mod, "get_json", lambda url, **k: {"events": evs})
+    by_day = {
+        "20250109": [espn_event("Before", date="2025-01-09T21:00:00Z")],
+        "20250110": [],
+        "20250111": [espn_event("Inside", date="2025-01-11T21:00:00Z", state="post")],
+        "20250112": [espn_event("Bad", date="not a date")],
+        "20250113": [espn_event("After", date="2025-01-13T21:00:00Z")],
+    }
+    monkeypatch.setattr(mod, "get_json", lambda url, params=None, **k:
+                        {"events": by_day.get(params["dates"], [])})
     events = mod.espn_soccer("uefa.nations", "UNL", 3)
     assert [(e.source, e.competition, e.title, e.status) for e in events] == \
         [("espn", "UNL", "Inside", "FT")]
 
 def test_espn_soccer_team_filter_by_name_tla_and_slug(monkeypatch, frozen):
-    evs = [espn_event("France vs Italy"), espn_event("Portugal vs Croatia", teams=(("POR", "Portugal"), ("CRO", "Croatia")))]
-    monkeypatch.setattr(mod, "get_json", lambda url, **k: {"events": evs})
+    evs = [espn_event("France vs Italy"),
+           espn_event("Portugal vs Croatia", teams=(("POR", "Portugal"), ("CRO", "Croatia")))]
+    monkeypatch.setattr(mod, "get_json", lambda url, params=None, **k:
+                        {"events": evs} if params["dates"] == "20250111" else {"events": []})
     for wanted in ({"Portugal"}, {"CRO"}, {"croatia"}):
         got = mod.espn_soccer("uefa.nations", "UNL", 3, teams=wanted)
         assert [e.title for e in got] == ["Portugal vs Croatia"]
