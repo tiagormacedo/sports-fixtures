@@ -47,18 +47,25 @@ def test_main_days_fallback_cap_and_default(monkeypatch, capsys):
     assert "--days must be >= 1" in err and "capped to 10" in err
 
 def test_main_exit_codes(monkeypatch, capsys):
-    patch_all(monkeypatch, stub(error=RuntimeError("down")))
-    assert mod.main(["--days", "1"]) == 1    # all failed, nothing to show
-    assert "No events: 4 of 4 source(s) failed" in capsys.readouterr().err
+    def count(source):
+        return sum(1 for s, *_ in mod.TASKS if s == source)
 
+    # all fd leagues fail; espn/f1/tennis succeed but return nothing
+    patch_all(monkeypatch, stub(error=RuntimeError("down")))
+    assert mod.main(["--days", "1"]) == 1
+    err = capsys.readouterr().err
+    assert f"No events: {count('fd')} of {len(mod.TASKS)} source(s) failed" in err
+
+    # one fd league produces an event, espn leagues fail -> partial: table + exit 1
     e = _ev()
     patch_all(monkeypatch, stub([e]), espn=stub(error=RuntimeError("down")))
+    assert mod.main(["--days", "1"]) == 1
     cap = capsys.readouterr()
-    assert mod.main(["--days", "1"]) == 1    # partial failure: table + exit 1
-    cap = capsys.readouterr()
-    assert "PSG vs RMA" in cap.out and "partial" in cap.err
+    assert "PSG vs RMA" in cap.out
+    assert f"{count('espn')} of {len(mod.TASKS)}" in cap.err   # see note below
 
-    patch_all(monkeypatch, stub())           # no failures, no events
+    # everything succeeds, zero events
+    patch_all(monkeypatch, stub())
     assert mod.main(["--days", "1"]) == 0
     assert "No events scheduled" in capsys.readouterr().out
 
