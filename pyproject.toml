@@ -25,6 +25,13 @@ sports-fixtures = "sports_fixtures:main"
 package-dir = { "" = "src" }
 py-modules = ["sports_fixtures"]
 
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=5",
+  "freezegun>=1.5",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers --strict-config"
