@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sports-fixtures"
-version = "1.0.0"
+version = "1.0.1"
 description = "CLI table of upcoming sports fixtures using football-data.org's and ESPN's APIs."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -24,3 +24,12 @@ sports-fixtures = "sports_fixtures:main"
 [tool.setuptools]
 package-dir = { "" = "src" }
 py-modules = ["sports_fixtures"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+markers = ["network: hits the real ESPN / football-data.org APIs; deselected in CI"]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
