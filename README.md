@@ -1,6 +1,8 @@
 # Sports fixtures
 
-A tiny, dependency-light code that prints upcoming sports fixtures as a sorted, deduplicated table in your terminal.
+![tests](https://github.com/tiagormacedo/sports-fixtures/actions/workflows/tests.yml/badge.svg)
+
+A tiny, dependency-light CLI that prints upcoming sports fixtures as a sorted, deduplicated table in your terminal.
 
 ```text
 Competition               Date         UTC    Event
@@ -13,24 +15,6 @@ Tennis (ATP)              Sun 23 Nov   14:00  Jannik Sinner vs Alexander Zverev
 ```
 
 The data comes from [football-data.org](https://www.football-data.org) API and [ESPN's](https://site.api.espn.com/apis/site/v2/sports) public scoreboard API.
-
-
-## Features
-
-- One command, multiple sports.
-- Declarative configuration: just edit the `TASKS` set of tuples `(source, code, label, team filter)`.
-- Teams and players filters.
-- Automatic retries with backoff, per-day/per-task error isolation, and warnings instead of crashes.
-- Deduplication, day-grouped output, width-capped columns, UTC times throughout.
-- Meaningful exit codes: `0` success, `1` partial/total failure (details on `stderr`), `2` usage error.
-
-
-## Requirements
-
-- **Python 3.11+** (ESPN timestamps omit seconds; `datetime.fromisoformat` needs 3.11+ to parse them).
-- [`requests`](https://pypi.org/project/requests/) and [`urllib3`](https://pypi.org/project/urllib3/).
-- A **football-data.org API key**, which can be obtained for free at
-  <https://www.football-data.org/client/register>. Without it, some football tasks fail (with warnings) but others still work.
 
 
 ## Installation and Usage
@@ -72,16 +56,64 @@ Edit the `TASKS` set in `src/sports_fixtures.py`. Each entry is a tuple `(source
 Filters match after normalization (case, whitespace, `-`/`_` → space), so `"Real Madrid"` also matches `real-madrid`. Football-data.org teams are best matched by TLA.
 
 
+## Features
+
+- One command, multiple sports.
+- Declarative configuration: just edit the `TASKS` set of tuples `(source, code, label, team filter)`.
+- Teams and players filters.
+- Automatic retries with backoff, per-day/per-task error isolation, and warnings instead of crashes.
+- Deduplication, day-grouped output, width-capped columns, UTC times throughout.
+- Meaningful exit codes: `0` success, `1` partial/total failure (details on `stderr`), `2` usage error.
+
+
+## Requirements
+
+- **Python 3.11+** (ESPN timestamps omit seconds; `datetime.fromisoformat` needs 3.11+ to parse them).
+- [`requests`](https://pypi.org/project/requests/) and [`urllib3`](https://pypi.org/project/urllib3/).
+- A **football-data.org API key**, which can be obtained for free at
+  <https://www.football-data.org/client/register>. Without it, some football tasks fail (with warnings) but others still work.
+
+
+## Development
+
+The test suite lives in `tests/` and runs automatically in CI on every push and
+pull request (Python 3.11–3.13). Unit tests are hermetic: HTTP is mocked at the
+transport layer and the clock is frozen, so nothing touches the network.
+
+```bash
+pip install -e ".[dev]"
+pytest --cov --cov-report=term-missing
+FD_API_KEY="your-key-here" pytest -m network
+```
+
+Live-API tests are marked `network` and never run in CI, so a third-party
+outage can't fail your build. Run them occasionally to catch response-schema
+drift in the ESPN / football-data.org APIs.
+
+| File | Covers |
+|---|---|
+| `tests/test_pure.py` | pure helpers (`parse_utc`, `week_range`, `dedupe`, `show`, …) |
+| `tests/test_fetchers.py` | fetchers with mocked HTTP (`get_json`, `fd_football`, `espn_*`) |
+| `tests/test_main.py` | CLI behavior: `--days` handling, exit codes, cross-source dedupe |
+| `tests/test_live.py` | `network`-marked smoke tests against the real APIs |
+
+
 ## Project layout
 
 ```text
 sports-fixtures/
 ├── .github
-    └── workflows
-      ├── sports_fixtures.yml
-      └── tests.yml
+|   └── workflows
+|     ├── sports_fixtures.yml
+|     └── tests.yml
 ├── src/
-    └── sports_fixtures.py
+|   └── sports_fixtures.py
+├── tests/
+│   ├── conftest.py
+│   ├── test_fetchers.py
+│   ├── test_live.py                  
+│   ├── test_main.py
+│   └── test_pure.py
 ├── .gitignore
 ├── LICENSE
 ├── pyproject.toml
