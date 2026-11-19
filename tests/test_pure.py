@@ -14,7 +14,7 @@ TODAY = date(2025, 1, 10)
     ("2025-01-11T22:00:00+02:00", datetime(2025, 1, 11, 20, 0, tzinfo=timezone.utc)),  # offset converted
     ("2025-01-11T20:00:00",       datetime(2025, 1, 11, 20, 0, tzinfo=timezone.utc)),  # naive -> UTC
     ("  2025-01-11T20:00:00Z  ",  datetime(2025, 1, 11, 20, 0, tzinfo=timezone.utc)),
-    ("2025-01-11T20:00:00.500Z",  datetime(2025, 1, 11, 20, 0, 500000, tzinfo=timezone.utc)),
+    ("2025-01-11T20:00:00.500Z",  datetime(2025, 1, 11, 20, 0, 0, 500000, tzinfo=timezone.utc)),
 ])
 def test_parse_utc_accepts_valid_timestamps(raw, expected):
     assert mod.parse_utc(raw) == expected
